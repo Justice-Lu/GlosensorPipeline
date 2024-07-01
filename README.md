@@ -113,49 +113,7 @@ pip install --upgrade nbformat
       
 ## Example
 
-The following is an example usage of the pipeline:
-```python
-# Example script to read in data, process it, and generate plots
-import os
-import sys
-sys.path.insert(1, '../.')
-from utils.GloSensorClass import GlosensorData
-from utils.GloSensorClass import distinct_colors
-
-DATA_PATH = './data/'
-file_extension = 'experiment_001'
-path = os.path.join(DATA_PATH + file_extension + '/')
-
-glo = GlosensorData(path)
-glo.ReadTableData()
-
-# Example data labeling
-glo.data.loc[(glo.data.Column.isin([1, 2, 3, 4])), 'Odor'] = 'Odor_1'
-glo.data.loc[(glo.data.Column.isin([5, 6, 7, 8, 9, 10, 11, 12])), 'Odor'] = 'Odor2'
-glo.data.loc[(glo.data.Column.isin([1])), 'Group'] = 'A'
-glo.data.loc[(glo.data.Column.isin([2])), 'Group'] = 'B'
-glo.data.loc[(glo.data.Column.isin([3])), 'Group'] = 'C'
-glo.data.loc[(glo.data.Column.isin([4])), 'Group'] = 'D'
-glo.data.loc[(glo.data.Row.isin(['A', 'B'])), 'Odor_conc'] = 100
-glo.data.loc[(glo.data.Row.isin(['C', 'D'])), 'Odor_conc'] = 10
-glo.data.loc[(glo.data.Row.isin(['E', 'F'])), 'Odor_conc'] = 1
-glo.data.loc[(glo.data.Row.isin(['G', 'H'])), 'Odor_conc'] = 0
-glo.data = glo.data.dropna()
-
-# Generate and show plots
-melted_data, AUC_data, slope_data = glo.get_melted_AUC_slope_data(group_col=['Odor', 'Group', 'Odor_conc'], slope_AUC_time=[0, 3], data=glo.data)
-
-fig = glo.plot_facet_line(melted_data, x_by='Time', y_by='mean', error_y_by='std', color_by='Odor_conc', facet_col_by='Group', n_facet_col_wrap=4)
-fig.show()
-
-fig = glo.plot_facet_bar(AUC_data, x_by="Odor_conc", y_by="AUC_mean", facet_col_by='Group', error_y_by='AUC_std', n_facet_col_wrap=4)
-fig.show()
-
-fig, stat = glo.plot_Dose_curves(AUC_data, groupby_col=['Odor', 'Group'], figsize=(10, 7), log_conc_offset=-6, x_by='Odor_conc', point_size=12, std_capsize=10, std_linewidth=2.5, curve_width=5)
-fig.show()
-print(pd.DataFrame(stat).T)
-```
-
+For more detailed examples follow Glosensor_demo.ipynb notebook
 
 ## Contributing
 
