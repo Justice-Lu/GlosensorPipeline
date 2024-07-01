@@ -17,9 +17,9 @@ This pipeline is designed for processing platereader CSV files, specifically for
 To use this pipeline, you need to have Python installed along with the necessary dependencies. You can create a conda environment and install the required packages using the following command:
 
 
-bash
+```bash
 conda create --name glosensor --file requirements.txt
-
+```
 
 ## Usage
 
