@@ -26,30 +26,13 @@ pip install --upgrade nbformat
 
 ## Usage
 
-1. **Import necessary modules and set up paths**:
-    ```python
-    import os
-    import sys
-    sys.path.insert(1, '../.')
-    from utils.GloSensorClass import GlosensorData
-    from utils.GloSensorClass import distinct_colors, continuous_colors
-
-    DATA_PATH = './data/'
-    file_extension = 'experiment_001'
-    path = os.path.join(DATA_PATH+file_extension+'/')
-    ```
-
-2. **Initialize the GlosensorData class**:
+ **Initialize the GlosensorData class**:
     ```python
     glo = GlosensorData(path)
-    ```
-
-3. **Read in data from the specified path**:
-    ```python
     glo.ReadTableData()
     ```
 
-4. **Visualize the 96-well plate data**:
+ **Visualize the 96-well plate data**:
     ```python
     fig_list = glo.view_96well_curve(x_by='Time', y_by='value', facet_col_by='Column', facet_row_by='Row',
                                      facet_col_spacing=0, facet_row_spacing=0, n_facet_col_wrap=12)
@@ -57,7 +40,7 @@ pip install --upgrade nbformat
         fig.show()
     ```
 
-5. **Label your 96-well plate based on the transfected schema**:
+ **Label your 96-well plate based on the transfected schema**:
     ```python
     glo.data.loc[(glo.data.Column.isin([1, 2, 3, 4])), 'Odor'] = 'Odor_1'
     glo.data.loc[(glo.data.Column.isin([5, 6, 7, 8, 9, 10, 11, 12])), 'Odor'] = 'Odor2'
@@ -75,7 +58,7 @@ pip install --upgrade nbformat
     glo.data = glo.data.dropna()
     ```
 
-6. **Process and plot data**:
+ **Process and plot data**:
     - **Get melted, AUC, and slope data**:
         ```python
         melted_data, AUC_data, slope_data = glo.get_melted_AUC_slope_data(
@@ -84,21 +67,7 @@ pip install --upgrade nbformat
             data=glo.data
         )
         ```
-
-    - **Plot facet plots for individual raw values**:
-        ```python
-        plot_data = melted_data
-
-        fig = glo.plot_facet_line(plot_data,
-                                  x_by='Time',
-                                  y_by='mean',
-                                  error_y_by='std',
-                                  color_by='Odor_conc',
-                                  facet_col_by='Group',
-                                  n_facet_col_wrap=4)
-        fig.show()
-        ```
-
+        
     - **Plot facet plots for AUC**:
         ```python
         plot_data = AUC_data[['Odor_conc', 'Group', 'AUC_mean', 'AUC_std', 'Plate']]
