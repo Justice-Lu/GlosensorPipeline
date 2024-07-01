@@ -1,5 +1,3 @@
-Sure, here is the updated `README.md` file including the installation steps using conda and embedding the images.
-
 ```markdown
 # Glosensor Pipeline
 
