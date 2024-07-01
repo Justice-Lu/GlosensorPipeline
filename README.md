@@ -26,13 +26,13 @@ pip install --upgrade nbformat
 
 ## Usage
 
- **Initialize the GlosensorData class**:
+ 1. **Initialize the GlosensorData class**:
     ```python
     glo = GlosensorData(path)
     glo.ReadTableData()
     ```
 
- **Visualize the 96-well plate data**:
+ 2. **Visualize the 96-well plate data**:
     ```python
     fig_list = glo.view_96well_curve(x_by='Time', y_by='value', facet_col_by='Column', facet_row_by='Row',
                                      facet_col_spacing=0, facet_row_spacing=0, n_facet_col_wrap=12)
@@ -40,7 +40,7 @@ pip install --upgrade nbformat
         fig.show()
     ```
 
- **Label your 96-well plate based on the transfected schema**:
+ 3. **Label your 96-well plate based on the transfected schema**:
     ```python
     glo.data.loc[(glo.data.Column.isin([1, 2, 3, 4])), 'Odor'] = 'Odor_1'
     glo.data.loc[(glo.data.Column.isin([5, 6, 7, 8, 9, 10, 11, 12])), 'Odor'] = 'Odor2'
@@ -58,7 +58,7 @@ pip install --upgrade nbformat
     glo.data = glo.data.dropna()
     ```
 
- **Process and plot data**:
+ 4. **Process and plot data**:
     - **Get melted, AUC, and slope data**:
         ```python
         melted_data, AUC_data, slope_data = glo.get_melted_AUC_slope_data(
