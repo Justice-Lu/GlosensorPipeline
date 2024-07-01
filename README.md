@@ -1,4 +1,4 @@
-```markdown
+markdown
 # Glosensor Pipeline
 
 This pipeline is designed for processing platereader CSV files, specifically for Glosensor data. It reads in files from a plate reader, consolidates the data based on user labeling, normalizes data, plots data values, and generates sigmoid dose curves.
@@ -16,9 +16,10 @@ This pipeline is designed for processing platereader CSV files, specifically for
 
 To use this pipeline, you need to have Python installed along with the necessary dependencies. You can create a conda environment and install the required packages using the following command:
 
-```bash
+
+bash
 conda create --name glosensor --file requirements.txt
-```
+
 
 ## Usage
 
